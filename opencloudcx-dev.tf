@@ -1,12 +1,12 @@
 locals {
   prefix = "dev"
-  name   = "opencloudcx-${local.prefix}-${random_string.suffix.result}"
+  name   = "opencloudcx-${local.prefix}-${random_string.scope.result}"
   tags   = { env = "dev" }
   region = "us-east-1"
 }
 
 module "opencloudcx-aws-dev" {
-  source = "../terraform-opencloudcx-aws"
+  source = "../module-opencloudcx-aws"
 
   name            = local.name
   cluster_version = var.kubernetes_version
