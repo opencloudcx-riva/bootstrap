@@ -5,7 +5,7 @@ provider "aws" {
 resource "random_string" "scope" {
   length  = 4
   upper   = false
-  lower   = false
+  number  = false
   special = false
 }
 
