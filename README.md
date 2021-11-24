@@ -73,7 +73,7 @@ eks_map_roles = []
   <td>
   
 <i>Defining Extra Users</i>
-  ```bash
+```bash
 eks_map_users = [{
   groups   = ["system:masters"]
   userarn  = "arn:aws:iam::<account number>:user/<user name>"
