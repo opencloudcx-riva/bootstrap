@@ -103,7 +103,59 @@ eks_map_users = []
 
 # Modules
 
-TODO: Talk about modules with link to PLUGINS.md
+To include OpenCloudCX modules, refer to the individual plugin README page for instructions
+
+<table width="100%">
+
+<tr style="font-size:16pt"><th colspan="3">Current Modules</th><th colspan="3">Future Modules</th></tr>
+<tr><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td></tr>
+
+<tr>
+  <td>module-code-server</td>
+  <td>Code Server</td>
+  <td><a href="https://github.com/OpenCloudCX/module-code-server">Github Link</a></td>
+  <td>module-sonarqube</td>
+  <td>Sonarqube</td>
+  <td><a href="https://github.com/OpenCloudCX/module-sonarqube">Github Link</td>
+</tr>
+
+<tr>
+  <td>module-drupal</td>
+  <td>Drupal</td>
+  <td><a href="https://github.com/OpenCloudCX/module-drupal">Github Link</a></td>
+  <td>module-mariadb</td>
+  <td>MariaDB</td>
+  <td><a href="https://github.com/OpenCloudCX/module-mariadb">Github Link</td>
+</tr>
+
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>module-postgresql</td>
+  <td>PostgreSQL</td>
+  <td><a href="https://github.com/OpenCloudCX/module-postgresql">Github Link</td>
+</tr>
+
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>module-anchore</td>
+  <td>Anchore Engine</td>
+  <td><a href="https://github.com/OpenCloudCX/module-anchore">Github Link</td>
+</tr>
+
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td>module-nexus</td>
+  <td>Nexus</td>
+  <td><a href="https://github.com/OpenCloudCX/module-nexus">Github Link</td>
+</tr>
+
+</table>
 
 # Environment creation
 
