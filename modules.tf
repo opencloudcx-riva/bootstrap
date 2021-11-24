@@ -23,7 +23,8 @@ resource "kubernetes_namespace" "develop" {
 }
 
 module "code-server" {
-  source = "../module-code-server"
+  # source = "../module-code-server"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-code-server?ref=develop"
 
   dns_zone  = var.dns_zone
   namespace = "develop"
@@ -57,7 +58,9 @@ module "code-server" {
 
 
 module "drupal" {
-  source = "../module-drupal"
+  # source = "../module-drupal"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
+
 
   dns_zone     = var.dns_zone
   namespace    = "develop"
