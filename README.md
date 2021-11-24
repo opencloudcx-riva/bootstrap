@@ -104,3 +104,139 @@ eks_map_users = []
 # Modules
 
 TODO: Talk about modules with link to PLUGINS.md
+
+# Environment creation
+
+## Initialize Terraform and Execute
+
+### ```terraform init```
+
+The ```init``` command tells Terraform to initialize the project from the current working directory of terraform configurations. If commands relying on initialization are executed before this step, the command will fail with an error.
+
+From [terraform.io](https://www.terraform.io/docs/cli/init/index.html)
+
+>Initialization performs several tasks to prepare a directory, including accessing state in the configured backend, downloading and installing provider plugins, and downloading modules. Under some conditions (usually when changing from one backend to another), it might ask the user for guidance or confirmation.
+
+### ```terraform apply```
+
+From [terraform.io](https://www.terraform.io/docs/cli/commands/apply.html)
+
+>The terraform apply command performs a plan just like terraform plan does, but then actually carries out the planned changes to each resource using the relevant infrastructure provider's API. It asks for confirmation from the user before making any changes, unless it was explicitly told to skip approval.
+### Command Execution
+
+Execute these two commands in succession.
+
+```
+$ terraform init
+$ terraform apply --auto-approve
+```
+
+If you receive the following error, confirm the s3 state bucket referenced above is correct
+
+```bash
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+Error refreshing state: AccessDenied: Access Denied
+        status code: 403, request id: <string> host id: <string>
+```
+
+
+---
+_NOTE: Terraform assumes the current ```[default]``` profile contains the appropriate credentials for environment initialization. If this is not correct, each Terraform command needs to be prefixed with ```AWS_PROFILE=``` and the desired AWS profile to use._
+On Linux this can be found in your home directory .aws update both credentials and config file
+On Windows C:\Users\[username]\.aws update both credentials and config file
+```
+$ AWS_PROFILE=<profile name> terraform init
+$ AWS_PROFILE=<profile name> terraform apply --auto-approve
+```
+---
+
+Once Terraform instructions have been applied, the following message will be displayed 
+
+<span style='font-size: 13pt; color: green'>Apply complete! Resources: ### added, 0 changed, 0 destroyed.</span>
+
+# Environment Validation
+
+Once a successful message of completion has been displayed, run the apprioriate script to connect.
+
+<table>
+<tr><th style="font-size:14pt">Linux</th><th style="font-size:14pt">Windows</th></tr>
+<tr><td>
+
+```bash
+$ connect.sh --profile <profile name>
+```
+
+</td><td>
+
+```powershell
+connect.ps1 -AwsProfile <profile name>
+```
+
+</td></tr>
+</table>
+
+Output from the above commands:
+|Label|Description|
+|---|---|
+|Cluster name|Name of the Kubernetes cluster for OpenCloudCX. This name will always contain a 4-character randomized string at the end|
+|Dashboard&nbsp;token|Token for use when authenticating to the Kubeternetes dashboard (see below)|
+|Jenkins PW|Jenkins admin password|
+|Grafana PW|Grafana admin password|
+<!-- |CodeServer PW|Code Server admin password| -->
+
+Execute following command to list the namespaces in the cluster
+
+```bash
+$ kubectl get namespaces -A
+
+NAME                   STATUS   AGE
+cert-manager           Active   10m
+dashboard              Active   10m
+default                Active   10m
+develop                Active   10m
+ingress-nginx          Active   10m
+jenkins                Active   10m
+kube-node-lease        Active   10m
+kube-public            Active   10m
+kube-system            Active   10m
+opencloudcx            Active   10m
+spinnaker              Active   10m
+```
+
+# OpenCloudCX Constituents and Credentials
+
+To access the individual toolsets contained within the OpenCloudCX enclave, use the following URLs, with the appropriate DNS zone from above, paired with the credentials outlined. Each module used may have their own secrets and methods to retrieve in the module documentation
+
+|Name|URL|Username|Password Location|
+|---|---|---|---|
+|Dashboard| ```https://dashboard.[DNS ZONE]```|None|```connect.sh``` token output|
+|Grafana| ```https://grafana.[DNS ZONE]```|admin|AWS Secrets Manager [```grafana```] or ```connect.sh``` token output|
+|Jenkins| ```https://jenkins.[DNS ZONE]```|admin|AWS Secrets Manager [```jenkins```] or ```connect.sh``` token output|
+|Keycloak| ```https://keycloak.[DNS ZONE]```|user|AWS Secrets Manager [```keycloak-admin```]
+|Selenium| ```https://selenium.[DNS ZONE]```|None|None|
+|Spinnaker| ```https://spinnaker.[DNS ZONE]```|None|None|
+
+# Environment Destruction
+
+### ```terraform destroy```
+
+From [terraform.io](https://www.terraform.io/docs/cli/commands/destroy.html)
+
+>The terraform destroy command is a convenient way to destroy all remote objects managed by a particular Terraform configuration.
+
+Execute the command.
+
+```
+$ terraform destroy --auto-approve
+```
+
+If the script terminates with a timout error, re-execute the `destroy` command again. If the script times out again, delete the `spinnaker` namespace
+
+```bash
+$ kubectl delete namespace spinnaker
+
+namespace "spinnaker" deleted
+```
+
+Once this command completes (it may take a while), re execute the `destroy` command again. 
