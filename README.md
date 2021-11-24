@@ -90,11 +90,11 @@ eks_map_users = []
 
 <tr>
   <td>dns_zone</td>
-  <td>To experience the full impact of an OpenCloudCX installation, a valid, publicly accessible DNS zone needs to be supplied within the configuration. The default DNS Zone of ```spinnaker.internal``` can be used for initial prototyping with appropriate local hosts file manipulation.</td>
+  <td>To experience the full impact of an OpenCloudCX installation, a valid, publicly accessible DNS zone needs to be supplied within the configuration. The default DNS Zone can be used for initial prototyping with appropriate local hosts file manipulation or kubectl port forwarding.</td>
   <td>
 
   ```bash
-  dns_zone           = "spinnaker.internal"
+  dns_zone = "spinnaker.internal"
   ```
 </td>
 </tr>
