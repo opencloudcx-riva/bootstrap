@@ -58,7 +58,7 @@ echo "Cluster name --> $_k8sName"
 echo''
 
 # print dashboard token
-_dashboardToken=$(kubectl get secret -n dashboard $(kubectl get sa/k8s-dashboard-admin --namespace dashboard -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}")
+_dashboardToken=$(kubectl get secret -n spinnaker $(kubectl get sa/k8s-dashboard-admin --namespace spinnaker -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}")
 echo "Dashboard token --> $_dashboardToken"
 echo''
 
