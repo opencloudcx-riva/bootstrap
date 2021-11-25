@@ -37,6 +37,21 @@ variable "eks_map_users" {
   default = []
 }
 
+variable "worker_groups" {
+  type = list(object({
+    name                 = string
+    instance_type        = string
+    asg_desired_capacity = number
+  }))
+  default = [
+    {
+      name                 = "worker-group-1"
+      instance_type        = "m5.large"
+      asg_desired_capacity = 3
+    }
+  ]
+}
+
 variable "eks_map_roles" {
   description = "Additional IAM roles to add to the aws-auth configmap"
   type = list(object({
