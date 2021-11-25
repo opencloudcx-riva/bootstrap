@@ -71,9 +71,10 @@ _passwordTable="${_passwordTable}\nJenkins,${_jenkinsPw}"
 _grafanaPw=$(kubectl get secret --namespace opencloudcx grafana-admin -o jsonpath="{.data.password}" | base64 --decode)
 _passwordTable="${_passwordTable}\nGrafana,${_grafanaPw}"
 
-_codeserverPw=$(kubectl get secret --namespace develop codeserver-password -o jsonpath="{.data.password}" | base64 --decode)
+_codeserverPw=$(kubectl get secret --namespace develop code-server -o jsonpath="{.data.password}" | base64 --decode)
 _passwordTable="${_passwordTable}\nCodeServer,${_codeserverPw}"
 
 echo "Services and Passwords"
 echo "----------------------"
 echo -e $_passwordTable | column -t -s ',' 
+echo ""

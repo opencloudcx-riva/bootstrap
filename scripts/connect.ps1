@@ -16,7 +16,7 @@ Write-Output ""
 
 $_jenkinsPw = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}")))
 $_grafanaPw = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($(kubectl get secret --namespace opencloudcx grafana-admin -o jsonpath="{.data.password}")))
-$_codeserverPw = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($(kubectl get secret --namespace develop codeserver-password -o jsonpath="{.data.password}")))
+$_codeserverPw = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($(kubectl get secret --namespace develop code-server -o jsonpath="{.data.password}")))
 
 Write-Output "Services and Passwords"
 Write-Output "----------------------"
