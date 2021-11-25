@@ -2,7 +2,7 @@ dns_zone = "<dns zone>"
 
 eks_map_users = [{
   groups   = ["system:masters"]
-  userarn   = "arn:aws:iam::<account number>:user/<iam username>"
+  userarn  = "arn:aws:iam::<account number>:user/<iam username>"
   username = "<username>"
 }]
 
