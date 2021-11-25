@@ -267,6 +267,7 @@ To access the individual toolsets contained within the OpenCloudCX enclave, use 
 |Jenkins| ```https://jenkins.[DNS ZONE]```|admin|AWS Secrets Manager [```jenkins```] or ```connect.sh``` token output|
 |Keycloak| ```https://keycloak.[DNS ZONE]```|user|AWS Secrets Manager [```keycloak-admin```]
 |Selenium| ```https://selenium.[DNS ZONE]```|None|None|
+|Sonarqube| ```https://sonarqube.[DNS ZONE]```|None|AWS Secrets Manager [```sonarqube```]|
 |Spinnaker| ```https://spinnaker.[DNS ZONE]```|None|None|
 
 # Environment Destruction
