@@ -4,12 +4,20 @@ This repository contains a framework to use for creation of an OpenCloudCX clust
 
 # Toolsets
 
+## Required
+
 |Toolset|Links|Notes|
 |---|---|---|
 |Terraform&nbsp;(at least version&nbsp;1.0.8)|[Download](https://releases.hashicorp.com/terraform/1.0.8/) | Terraform is distributed as a single binary. Install Terraform by unzipping it and moving it to a directory included in your system's [PATH](https://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them). <br />**This project has been tested with Terraform 1.0.8 -- Will be updated as newer versions are tested.**|
 |AWS&nbsp;CLI|[Instructions](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) \|\| [Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)|This link provides information for getting started with version 2 of the AWS Command Line Interface (AWS CLI)|
 |kubectl|[Instructions](https://kubernetes.io/docs/tasks/tools/#kubectl)|Allows commands to be executed against Kubernetes clusters|
 | Git |[Instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)| Need to run this command to avoid a CRLF issues: git config --global core.autocrlf input|
+
+## Optional
+
+|Toolset|Links|Notes|
+|---|---|---|
+|Windows Subsystem for Linux (WSL) | [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) | This is a robust linux capability for Windows 10 and Windows 11. Linux instructions are written for Ubuntu 20.04 LTS |
 
 # Setup
 
