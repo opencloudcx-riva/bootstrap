@@ -97,6 +97,23 @@ eks_map_users = []
 </tr>
 
 <tr>
+  <td><code>worker_groups</code></td>
+  <td>Definition of worker groups in the aws eks cluster</td>
+  <td>
+
+```bash
+worker_groups = [
+  {
+    name                 = "worker-group-1"
+    instance_type        = "m5.xlarge"
+    asg_desired_capacity = 3
+  }
+]
+```
+  </td>
+</tr>
+
+<tr>
   <td><code>dns_zone</code></td>
   <td>To experience the full impact of an OpenCloudCX installation, a valid, publicly accessible DNS zone needs to be supplied within the configuration. The default DNS Zone can be used for initial prototyping with appropriate local hosts file manipulation or kubectl port forwarding.</td>
   <td>
@@ -115,52 +132,70 @@ To include OpenCloudCX modules, refer to the individual plugin README page for i
 
 <table width="100%">
 
-<tr style="font-size:16pt"><th colspan="3">Current Modules</th><th colspan="3">Future Modules</th></tr>
+<tr style="font-size:16pt"><th colspan="3" width="50%">Current Modules</th><th colspan="3" width="50%">Future Modules</th></tr>
 <tr><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td></tr>
 
 <tr>
   <td>module-code-server</td>
   <td>Code Server</td>
   <td><a href="https://github.com/OpenCloudCX/module-code-server">Github Link</a></td>
-  <td>module-sonarqube</td>
-  <td>Sonarqube</td>
-  <td><a href="https://github.com/OpenCloudCX/module-sonarqube">Github Link</td>
+  <td>module-nexus</td>
+  <td>Nexus</td>
+  <td><a href="https://github.com/OpenCloudCX/module-nexus">Github Link</td>
 </tr>
 
 <tr>
   <td>module-drupal</td>
   <td>Drupal</td>
   <td><a href="https://github.com/OpenCloudCX/module-drupal">Github Link</a></td>
-  <td>module-mariadb</td>
-  <td>MariaDB</td>
-  <td><a href="https://github.com/OpenCloudCX/module-mariadb">Github Link</td>
+  <td></td>
+  <td></td>
+  <td></td>
 </tr>
 
 <tr>
-  <td></td>
-  <td></td>
-  <td></td>
   <td>module-postgresql</td>
   <td>PostgreSQL</td>
   <td><a href="https://github.com/OpenCloudCX/module-postgresql">Github Link</td>
+  <td></td>
+  <td></td>
+  <td></td>
 </tr>
 
 <tr>
-  <td></td>
-  <td></td>
-  <td></td>
   <td>module-anchore</td>
   <td>Anchore Engine</td>
   <td><a href="https://github.com/OpenCloudCX/module-anchore">Github Link</td>
+  <td></td>
+  <td></td>
+  <td></td>
 </tr>
 
 <tr>
+  <td>module-sonarqube</td>
+  <td>Sonarqube</td>
+  <td><a href="https://github.com/OpenCloudCX/module-sonarqube">Github Link</td>
   <td></td>
   <td></td>
   <td></td>
-  <td>module-nexus</td>
-  <td>Nexus</td>
-  <td><a href="https://github.com/OpenCloudCX/module-nexus">Github Link</td>
+</tr>
+
+<tr>
+  <td>module-mariadb</td>
+  <td>MariaDB</td>
+  <td><a href="https://github.com/OpenCloudCX/module-mariadb">Github Link</td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>module-grafana-monitoring</td>
+  <td>Grafana monitoring setup using Prometheus</td>
+  <td><a href="https://github.com/OpenCloudCX/module-grafana-monitoring">Github Link</td>
+  <td></td>
+  <td></td>
+  <td></td>
 </tr>
 
 </table>
@@ -268,15 +303,16 @@ spinnaker              Active   10m
 
 To access the individual toolsets contained within the OpenCloudCX enclave, use the following URLs, with the appropriate DNS zone from above, paired with the credentials outlined. Each module used may have their own secrets and methods to retrieve in the module documentation
 
-|Name|URL|Username|Password Location|
-|---|---|---|---|
-|Dashboard| ```https://dashboard.[DNS ZONE]```|None|```connect.sh``` token output|
-|Grafana| ```https://grafana.[DNS ZONE]```|admin|AWS Secrets Manager [```grafana```] or ```connect.sh``` token output|
-|Jenkins| ```https://jenkins.[DNS ZONE]```|admin|AWS Secrets Manager [```jenkins```] or ```connect.sh``` token output|
-|Keycloak| ```https://keycloak.[DNS ZONE]```|user|AWS Secrets Manager [```keycloak-admin```]
-|Selenium| ```https://selenium.[DNS ZONE]```|None|None|
-|Sonarqube| ```https://sonarqube.[DNS ZONE]```|None|AWS Secrets Manager [```sonarqube```]|
-|Spinnaker| ```https://spinnaker.[DNS ZONE]```|None|None|
+|Name|Public URL|Internal URL ( [DNS SUFFIX] = `.svc.cluster.local` ),|Username|Password Location|
+|---|---|---|---|---|
+|Dashboard| ```https://dashboard.[DNS ZONE]```|```http://k8s-dashboard-kubernetes-dashboard.spinnaker.[DNS SUFFIX]```|None|```connect.sh``` token output|
+|Grafana| ```https://grafana.[DNS ZONE]```|```http://grafana.opencloudcx.[DNS SUFFIX]```|admin|AWS Secrets Manager [```grafana```] or ```connect.sh``` token output|
+|Jenkins| ```https://jenkins.[DNS ZONE]```|```http://jenkins.jenkins.[DNS SUFFIX]```|admin|AWS Secrets Manager [```jenkins```] or ```connect.sh``` token output|
+|Keycloak| ```https://keycloak.[DNS ZONE]```|```http://keycloak.spinnaker.[DNS SUFFIX]```|user|AWS Secrets Manager [```keycloak-admin```]
+|Prometheus|None|```http://prometheus-server.opencloudcx.[DNS SUFFIX]```|None|N/A|
+|Selenium| ```https://selenium.[DNS ZONE]```|```http://selenium3-selenium-hub.jenkins.[DNS SUFFIX]```|None|None|
+|Sonarqube| ```https://sonarqube.[DNS ZONE]```|```http://sonarqube-sonarqube.jenkins.[DNS SUFFIX]```|None|AWS Secrets Manager [```sonarqube```]|
+|Spinnaker| ```https://spinnaker.[DNS ZONE]```|```http://spinnaker-deck.spinnaker.[DNS SUFFIX]```|None|None|
 
 # Environment Destruction
 
