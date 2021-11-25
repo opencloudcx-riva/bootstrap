@@ -1,3 +1,5 @@
+
+
 provider "kubernetes" {
   host                   = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
   token                  = module.opencloudcx-aws-dev.aws_eks_cluster_auth_token
@@ -39,17 +41,44 @@ module "code-server" {
   ]
 }
 
-module "anchore" {
-  # source = "../module-anchore"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-anchore?ref=develop"
+##########################################
 
-  dns_zone    = var.dns_zone
-  namespace   = "jenkins"
-  admin_email = "anorris@rivasolutionsinc.com"
+terraform {
+  required_providers {
+    grafana = {
+      source  = "grafana/grafana"
+      version = "~> 1.16.0"
+    }
+  }
+}
+
+provider "grafana" {
+  url                  = "https://grafana.${var.dns_zone}"
+  insecure_skip_verify = true
+  auth                 = "admin:${nonsensitive(module.opencloudcx-aws-dev.grafana_secret.password)}"
+  org_id               = 1
+}
+
+data "kubernetes_secret" "grafana_admin" {
+  metadata {
+    name      = "grafana-secret"
+    namespace = "opencloudcx"
+  }
+
+  depends_on = [
+    module.opencloudcx-aws-dev
+  ]
+}
+
+module "grafana_monitoring" {
+  source = "../module-grafana-monitoring"
+  # source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
+
+  prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
   providers = {
     kubernetes = kubernetes,
-    helm       = helm
+    grafana    = grafana
   }
 
   depends_on = [
@@ -57,22 +86,75 @@ module "anchore" {
   ]
 }
 
-module "drupal" {
-  # source = "../module-drupal"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
+##########################################
+
+# module "anchore" {
+#   source = "../module-anchore"
+#   # source = "git::ssh://git@github.com/OpenCloudCX/module-anchore?ref=develop"
+
+#   dns_zone    = var.dns_zone
+#   namespace   = "jenkins"
+#   admin_email = "anorris@rivasolutionsinc.com"
+
+#   providers = {
+#     kubernetes = kubernetes,
+#     helm       = helm
+#   }
+
+#   depends_on = [
+#     module.opencloudcx-aws-dev,
+#   ]
+# }
+
+# module "drupal" {
+#   source = "../module-drupal"
+#   # source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
 
 
-  dns_zone     = var.dns_zone
-  namespace    = "develop"
-  drupal_email = "anorris@rivasolutionsinc.com"
+#   dns_zone     = var.dns_zone
+#   namespace    = "develop"
+#   drupal_email = "anorris@rivasolutionsinc.com"
 
-  providers = {
-    kubernetes = kubernetes,
-    helm       = helm
-  }
+#   providers = {
+#     kubernetes = kubernetes,
+#     helm       = helm
+#   }
 
-  depends_on = [
-    module.opencloudcx-aws-dev,
-  ]
+#   depends_on = [
+#     module.opencloudcx-aws-dev,
+#   ]
+# }
 
-}
+# module "mariadb" {
+#   source = "../module-mariadb"
+#   # source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
+
+#   dns_zone     = var.dns_zone
+#   namespace    = "develop"
+
+#   providers = {
+#     kubernetes = kubernetes,
+#     helm       = helm
+#   }
+
+#   depends_on = [
+#     module.opencloudcx-aws-dev,
+#   ]
+# }
+
+# module "postgresql" {
+#   source = "../module-postgres"
+#   # source = "git::ssh://git@github.com/OpenCloudCX/module-postgres?ref=develop"
+
+#   dns_zone     = var.dns_zone
+#   namespace    = "develop"
+
+#   providers = {
+#     kubernetes = kubernetes,
+#     helm       = helm
+#   }
+
+#   depends_on = [
+#     module.opencloudcx-aws-dev,
+#   ]
+# }
