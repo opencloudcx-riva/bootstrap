@@ -39,23 +39,23 @@ module "code-server" {
   ]
 }
 
-# module "anchore" {
-#   source = "../module-anchore"
+module "anchore" {
+  # source = "../module-anchore"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-anchore?ref=develop"
 
-#   dns_zone  = var.dns_zone
-#   namespace = "develop"
+  dns_zone    = var.dns_zone
+  namespace   = "jenkins"
+  admin_email = "anorris@rivasolutionsinc.com"
 
-#   providers = {
-#     kubernetes = kubernetes,
-#     helm       = helm
-#   }
+  providers = {
+    kubernetes = kubernetes,
+    helm       = helm
+  }
 
-#   depends_on = [
-#     module.opencloudcx-aws-dev,
-#   ]
-# }
-
-
+  depends_on = [
+    module.opencloudcx-aws-dev,
+  ]
+}
 
 module "drupal" {
   # source = "../module-drupal"
