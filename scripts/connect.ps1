@@ -10,7 +10,7 @@ aws eks --region us-east-1 update-kubeconfig --name "$_k8sName" --profile $AwsPr
 Write-Output "Cluster Name --> $_k8sName" 
 Write-Output ""
 
-$_dashboardToken=$(kubectl get secret -n dashboard $(kubectl get sa/k8s-dashboard-admin --namespace dashboard -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}")
+$_dashboardToken=$(kubectl get secret -n spinnaker $(kubectl get sa/k8s-dashboard-admin --namespace spinnaker -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}")
 Write-Output "Dashboard token --> $_dashboardToken"
 Write-Output ""
 
