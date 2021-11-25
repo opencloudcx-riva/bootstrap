@@ -39,7 +39,7 @@ AWS_PROFILE=$_PROFILE terraform destroy --auto-approve
 echo " ---------------- SECOND PASS DESTROY "
 AWS_PROFILE=$_PROFILE terraform destroy --auto-approve
 
-echo " ---------------- DELETE spinnaker NAMESPACE "
+echo " ---------------- DELETE spinnaker NAMESPACE (this may take quite a while)"
 kubectl delete namespace spinnaker
 
 echo " ---------------- THIRD PASS DESTROY "
