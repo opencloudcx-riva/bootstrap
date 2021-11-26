@@ -1,4 +1,11 @@
-
+terraform {
+  required_providers {
+    grafana = {
+      source  = "grafana/grafana"
+      version = "~> 1.16.0"
+    }
+  }
+}
 
 provider "kubernetes" {
   host                   = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
@@ -43,19 +50,10 @@ module "code-server" {
 
 ##########################################
 
-terraform {
-  required_providers {
-    grafana = {
-      source  = "grafana/grafana"
-      version = "~> 1.16.0"
-    }
-  }
-}
-
 provider "grafana" {
   url                  = "https://grafana.${var.dns_zone}"
   insecure_skip_verify = true
-  auth                 = "admin:${nonsensitive(module.opencloudcx-aws-dev.grafana_secret.password)}"
+  auth                 = "admin:${module.opencloudcx-aws-dev.grafana_secret}"
   org_id               = 1
 }
 
