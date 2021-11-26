@@ -332,16 +332,16 @@ spinnaker              Active   10m
 
 To access the individual toolsets contained within the OpenCloudCX enclave, use the following URLs, with the appropriate DNS zone from above, paired with the credentials outlined. Each module used may have their own secrets and methods to retrieve in the module documentation
 
-| Name       | Public URL                     | Internal URL ( [DNS SUFFIX] = `.svc.cluster.local` ),              | Username | Password Location                                                |
-| ---------- | ------------------------------ | ------------------------------------------------------------------ | -------- | ---------------------------------------------------------------- |
-| Dashboard  | `https://dashboard.[DNS ZONE]` | `http://k8s-dashboard-kubernetes-dashboard.spinnaker.[DNS SUFFIX]` | None     | `connect.sh` token output                                        |
-| Grafana    | `https://grafana.[DNS ZONE]`   | `http://grafana.opencloudcx.[DNS SUFFIX]`                          | admin    | AWS Secrets Manager [```grafana```] or `connect.sh` token output |
-| Jenkins    | `https://jenkins.[DNS ZONE]`   | `http://jenkins.jenkins.[DNS SUFFIX]`                              | admin    | AWS Secrets Manager [```jenkins```] or `connect.sh` token output |
-| Keycloak   | `https://keycloak.[DNS ZONE]`  | `http://keycloak.spinnaker.[DNS SUFFIX]`                           | user     | AWS Secrets Manager [```keycloak-admin```]                       |
-| Prometheus | None                           | `http://prometheus-server.opencloudcx.[DNS SUFFIX]`                | None     | N/A                                                              |
-| Selenium   | `https://selenium.[DNS ZONE]`  | `http://selenium3-selenium-hub.jenkins.[DNS SUFFIX]`               | None     | None                                                             |
-| Sonarqube  | `https://sonarqube.[DNS ZONE]` | `http://sonarqube-sonarqube.jenkins.[DNS SUFFIX]`                  | None     | AWS Secrets Manager [```sonarqube```]                            |
-| Spinnaker  | `https://spinnaker.[DNS ZONE]` | `http://spinnaker-deck.spinnaker.[DNS SUFFIX]`                     | None     | None                                                             |
+| Name       | Public URL<br />Internal URL ( [DNS SUFFIX] = `.svc.cluster.local` )                                   | Username | Password Location                                                |
+| ---------- | ------------------------------------------------------------------------------------------------------ | -------- | ---------------------------------------------------------------- |
+| Dashboard  | `https://dashboard.[DNS ZONE]`<br />`http://k8s-dashboard-kubernetes-dashboard.spinnaker.[DNS SUFFIX]` | None     | `connect.sh` token output                                        |
+| Grafana    | `https://grafana.[DNS ZONE]` <br /> `http://grafana.opencloudcx.[DNS SUFFIX]`                          | admin    | AWS Secrets Manager [```grafana```] or `connect.sh` token output |
+| Jenkins    | `https://jenkins.[DNS ZONE]` <br /> `http://jenkins.jenkins.[DNS SUFFIX]`                              | admin    | AWS Secrets Manager [```jenkins```] or `connect.sh` token output |
+| Keycloak   | `https://keycloak.[DNS ZONE]` <br /> `http://keycloak.spinnaker.[DNS SUFFIX]`                          | user     | AWS Secrets Manager [```keycloak-admin```]                       |
+| Prometheus | None <br /> `http://prometheus-server.opencloudcx.[DNS SUFFIX]`                                        | None     | N/A                                                              |
+| Selenium   | `https://selenium.[DNS ZONE]` <br /> `http://selenium3-selenium-hub.jenkins.[DNS SUFFIX]`              | None     | None                                                             |
+| Sonarqube  | `https://sonarqube.[DNS ZONE]` <br /> `http://sonarqube-sonarqube.jenkins.[DNS SUFFIX]`                | None     | AWS Secrets Manager [```sonarqube```]                            |
+| Spinnaker  | `https://spinnaker.[DNS ZONE]` <br /> `http://spinnaker-deck.spinnaker.[DNS SUFFIX]`                   | None     | None                                                             |
 
 # Environment Destruction
 
