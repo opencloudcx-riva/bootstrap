@@ -132,7 +132,7 @@ dns_zone = "spinnaker.internal"
 
 # Modules
 
-To include OpenCloudCX modules, refer to the individual plugin README page for instructions. Plesae note which of the modules cannot be run as part of the OpenCloudCX bootstrap modules and should use the `bolt-on` project.
+To include OpenCloudCX modules, refer to the individual plugin README page for instructions. Please note which of the modules cannot be run as part of the OpenCloudCX bootstrap modules and should use the `bolt-on` project.
 
 ## Capability Modules
 
