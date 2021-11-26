@@ -69,8 +69,8 @@ data "kubernetes_secret" "grafana_admin" {
 }
 
 module "grafana_monitoring" {
-  source = "../module-grafana-monitoring"
-  # source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
+  # source = "../module-grafana-monitoring"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
 
   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
