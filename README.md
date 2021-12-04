@@ -4,6 +4,10 @@ This repository contains a framework to use for creation of an OpenCloudCX clust
 
 # Toolsets
 
+## Terraform
+
+The entire infrastructure is installed and managed using [Hashicorp Terraform](https://www.terraform.io/). THis can be achieved using either terraform as as a single binary or [Terraform Cloud](https://www.terraform.io/cloud?utm_source=hashicorp_com&utm_content=pricing_tfc). If terraform cloud is used, there is not a requirement to have the terraform binary installed on the local machine.
+
 ## Required
 
 | Toolset                                      | Links                                                                                                                                                                                               | Notes                                                                                                                                                                                                                                                                                                                                                                          |
@@ -19,7 +23,24 @@ This repository contains a framework to use for creation of an OpenCloudCX clust
 | --------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | Windows Subsystem for Linux (WSL) | [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) | This is a robust linux capability for Windows 10 and Windows 11. Linux instructions are written for Ubuntu 20.04 LTS |
 
-# Setup
+# Terraform Cloud Setup
+
+After logging into terraform cloud, create a new workspace with the following options:
+
+| Step                | Selections/Values                                                            | Notes                                                       |
+| ------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Choose Type         | Version control workflow                                                     |                                                             |
+| Connect to VCS      | Github                                                                       | Do _NOT_ select "GitHub Enterprise" or "GitHub.com (Custom) |
+| Choose a repository | _Select the bootstrap project for the appropriate environment configuration_ |                                                             |
+| Configure settings  | Workspace name                                                               |                                                             |
+
+After workspace creation, select `Variables` and add the following entries
+
+| Key      | Value | Category  |
+| -------- | ----- | --------- |
+| dns_zone |       | terraform |
+
+# Local Terraform Setup
 
 Once all toolsets are installed and verified to be operational, configure the cloned bootstrap project.
 
