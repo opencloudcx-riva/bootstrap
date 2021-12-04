@@ -153,7 +153,7 @@ dns_zone = "spinnaker.internal"
 
 # Modules
 
-To include OpenCloudCX modules, refer to the individual plugin README page for instructions. Please note which of the modules cannot be run as part of the OpenCloudCX bootstrap modules and should use the `bolt-on` project.
+To include OpenCloudCX modules, refer to the individual plugin README page for instructions.
 
 ## Capability Modules
 
@@ -220,25 +220,6 @@ To include OpenCloudCX modules, refer to the individual plugin README page for i
   <td>module-grafana-monitoring</td>
   <td>Grafana monitoring setup using Prometheus</td>
   <td><a href="https://github.com/OpenCloudCX/module-grafana-monitoring">Github Link</td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
-
-</table>
-
-## Language Modules
-
-Other modules will create the necessary Jenkins and Spinnaker pipelines elements for language primers
-
-<table width="100%">
-
-<tr style="font-size:16pt"><th colspan="3" width="50%">Current</th><th colspan="3" width="50%">Future</th></tr>
-<tr><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td><td><b>Name</b></td><td><b>Functionality</b></td><td><b>URL</b></td></tr>
-<tr>
-  <td>module-python-microservice</td>
-  <td>Python microservice primer</td>
-  <td><a href="https://github.com/OpenCloudCX/module-python-microservice">Github Link</a></td>
   <td></td>
   <td></td>
   <td></td>

@@ -1,3 +1,19 @@
+variable "aws_region" {
+  description = "The aws region to deploy the service into"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "access_key" {
+  description = "AWS access key"
+  type        = string
+}
+
+variable "secret_key" {
+  description = "AWS secret key"
+  type        = string
+}
+
 variable "dns_zone" {
   type    = string
   default = "opencloudcx.internal"
