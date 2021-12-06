@@ -49,7 +49,7 @@ module "code-server" {
 }
 
 output "codeserver_password" {
-  value = nonsensitive(module.module_secret.secret)
+  value = nonsensitive(module.code-server.module_secret)
 }
 
 ##########################################
