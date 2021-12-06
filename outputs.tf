@@ -20,8 +20,10 @@ output "aws_eks_cluster_ca_certificate" {
 
 output "jenkins_password" {
   value = module.opencloudcx-aws-dev.jenkins_secret
+  sensitive = true
 }
 
 output "grafana_password" {
   value = module.opencloudcx-aws-dev.grafana_secret
+  sensitive = true
 }
