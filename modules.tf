@@ -108,24 +108,23 @@ module "grafana_monitoring" {
 #   ]
 # }
 
-# module "drupal" {
-#   source = "../module-drupal"
-#   # source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
+module "drupal" {
+  # source = "../module-drupal"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
 
+  dns_zone     = var.dns_zone
+  namespace    = "develop"
+  drupal_email = "anorris@rivasolutionsinc.com"
 
-#   dns_zone     = var.dns_zone
-#   namespace    = "develop"
-#   drupal_email = "anorris@rivasolutionsinc.com"
+  providers = {
+    kubernetes = kubernetes,
+    helm       = helm
+  }
 
-#   providers = {
-#     kubernetes = kubernetes,
-#     helm       = helm
-#   }
-
-#   depends_on = [
-#     module.opencloudcx-aws-dev,
-#   ]
-# }
+  depends_on = [
+    module.opencloudcx-aws-dev,
+  ]
+}
 
 # module "mariadb" {
 #   source = "../module-mariadb"
