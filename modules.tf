@@ -48,6 +48,10 @@ module "code-server" {
   ]
 }
 
+output "codeserver_password" {
+  value = nonsensitive(module.code-server.secret)
+}
+
 ##########################################
 
 provider "grafana" {
