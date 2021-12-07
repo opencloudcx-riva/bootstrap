@@ -2,7 +2,7 @@ locals {
   prefix = "dev"
   name   = "opencloudcx-${local.prefix}-${random_string.scope.result}"
   tags   = { env = "dev" }
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 module "opencloudcx-aws-dev" {
@@ -11,7 +11,7 @@ module "opencloudcx-aws-dev" {
 
   name             = local.name
   cluster_version  = var.kubernetes_version
-  region           = "us-east-1"
+  region           = var.aws_region
   worker_groups    = var.worker_groups
   map_users        = var.eks_map_users
   map_roles        = var.eks_map_roles
