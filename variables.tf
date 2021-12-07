@@ -83,3 +83,23 @@ variable "write_kubeconfig" {
   type        = bool
   default     = false
 }
+
+variable "kubernetes_dockerhub_secret_name" {
+  description = "Kubernetes dockerhub secret name. This is the reference name used within a kaniko pods"
+  type        = string
+}
+
+variable "kubernetes_secret_dockerhub_username" {
+  description = "Kubernetes secret dockerhub username"
+  type        = string
+}
+
+variable "kubernetes_secret_dockerhub_password" {
+  description = "Kubernetes secret dockerhub password"
+  type        = string
+}
+
+variable "kubernetes_secret_dockerhub_email" {
+  description = "Kubernetes secret dockerhub email"
+  type        = string
+}

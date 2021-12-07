@@ -6,8 +6,8 @@ locals {
 }
 
 module "opencloudcx-aws-dev" {
-  # source = "../module-opencloudcx-aws"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
+  source = "../module-opencloudcx-aws"
+  # source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
 
   name             = local.name
   cluster_version  = var.kubernetes_version
@@ -18,4 +18,10 @@ module "opencloudcx-aws-dev" {
   write_kubeconfig = var.write_kubeconfig
 
   dns_zone = var.dns_zone
+
+  kubernetes_dockerhub_secret_name     = var.kubernetes_dockerhub_secret_name
+  kubernetes_secret_dockerhub_username = var.kubernetes_secret_dockerhub_username
+  kubernetes_secret_dockerhub_password = var.kubernetes_secret_dockerhub_password
+  kubernetes_secret_dockerhub_email    = var.kubernetes_secret_dockerhub_email
 }
+
