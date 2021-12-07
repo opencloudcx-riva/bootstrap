@@ -1,7 +1,9 @@
 terraform {
   backend "s3" {
-    key    = "[terraform-state-filename]"
-    bucket = "[bucket-name]" 
-    region = "[region]"
+    key        = "[terraform-state-filename]"
+    bucket     = "[bucket-name]" 
+    region     = "[region]"
+    access_key = "[aws-access-key]"
+    secret_key = "[aws-secret-key]"
   }
 }
