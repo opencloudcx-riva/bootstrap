@@ -1,11 +1,3 @@
-# output "jenkins_secret" {
-#     value = nonsensitive(module.opencloudcx-aws-dev.jenkins_secret)
-# }
-
-# output "jenkins_url" {
-#     value = module.opencloudcx-aws-dev.jenkins_url
-# }
-
 output "aws_eks_cluster_endpoint" {
   value = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
 }
