@@ -45,10 +45,11 @@ Update the variables within each file for any desired configuration changes
 
 ## `secrets.auto.tfvars`
 
-| Variable     | Explanation           |
-| ------------ | --------------------- |
-| `access_key` | AWS Access Key        |
-| `secret_key` | AWS Secret Access Key |
+| Variable                               | Explanation                                                                                                                   |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `access_key`                           | AWS Access Key                                                                                                                |
+| `secret_key`                           | AWS Secret Access Key                                                                                                         |
+| `kubernetes_secret_dockerhub_password` | Dockerhub password for posting images. This entry can be removed or commented out if no dockerhub account is being configured |
 
 ## `variables.auto.tfvars`
 
@@ -60,7 +61,7 @@ Update the variables within each file for any desired configuration changes
 </tr>
 <tr>
   <td><code>eks_map_roles</code></td>
-  <td>Additional IAM roles to add to the aws-auth configmap. 
+  <td>Additional IAM roles to add to the aws-auth configmap. This entry can be removed or commented out if no extra roles need to be added.
   </td>
   <td>
   
@@ -81,7 +82,7 @@ eks_map_roles = []
 </tr>
 <tr>
   <td><code>eks_map_users</code></td>
-  <td>Additional IAM users to add to the aws-auth configmap</td>
+  <td>Additional IAM users to add to the aws-auth configmap. This entry can be removed or commented out if no extra users need to be added.</td>
   <td>
   
 <i>Defining Extra Users</i>
@@ -102,7 +103,7 @@ eks_map_users = []
 
 <tr>
   <td><code>worker_groups</code></td>
-  <td>Definition of worker groups in the aws eks cluster</td>
+  <td>Definition of worker groups in the aws eks cluster. This entry can be removed or commented out if no changes to the default configuration are needed.</td>
   <td>
 
 ```bash
@@ -125,6 +126,42 @@ worker_groups = [
 
 ```bash
 dns_zone = "spinnaker.internal"
+```
+
+</td>
+</tr>
+
+<tr>
+<td><code>kubernetes_dockerhub_secret_name</code></td>
+<td>Named reference to the dockerhub secrets used when publishing to dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>
+
+```bash
+kubernetes_dockerhub_secret_name = "my-dockerhub"
+```
+
+</td>
+</tr>
+
+<tr>
+<td><code>kubernetes_secret_dockerhub_username</code></td>
+<td>Username to use when authenticating to dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>
+
+```bash
+kubernetes_secret_dockerhub_username = "username"
+```
+
+</td>
+</tr>
+
+<tr>
+<td><code>kubernetes_secret_dockerhub_email</code></td>
+<td>Email address for configuration in dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>
+
+```bash
+kubernetes_secret_dockerhub_email = "email@domain.com"
 ```
 
 </td>
