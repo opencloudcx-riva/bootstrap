@@ -11,3 +11,7 @@ eks_map_roles = [{
   rolearn  = "arn:aws:iam::<account number>:role/<iam rolename>"
   username = "<username>"
 }]
+
+kubernetes_dockerhub_secret_name     = "<dockerhub account reference name>"
+kubernetes_secret_dockerhub_username = "<dockerhub username>"
+kubernetes_secret_dockerhub_email    = "<dockerhub email>"
