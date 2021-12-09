@@ -8,16 +8,34 @@ terraform {
 }
 
 provider "kubernetes" {
+  alias                  = "dev"
   host                   = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
   token                  = module.opencloudcx-aws-dev.aws_eks_cluster_auth_token
   cluster_ca_certificate = module.opencloudcx-aws-dev.aws_eks_cluster_ca_certificate
 }
 
 provider "helm" {
+  alias = "dev"
   kubernetes {
     host                   = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
     token                  = module.opencloudcx-aws-dev.aws_eks_cluster_auth_token
     cluster_ca_certificate = module.opencloudcx-aws-dev.aws_eks_cluster_ca_certificate
+  }
+}
+
+provider "kubernetes" {
+  alias                  = "nonprod"
+  host                   = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint
+  token                  = module.opencloudcx-aws-nonprod.aws_eks_cluster_auth_token
+  cluster_ca_certificate = module.opencloudcx-aws-nonprod.aws_eks_cluster_ca_certificate
+}
+
+provider "helm" {
+  alias = "nonprod"
+  kubernetes {
+    host                   = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint
+    token                  = module.opencloudcx-aws-nonprod.aws_eks_cluster_auth_token
+    cluster_ca_certificate = module.opencloudcx-aws-nonprod.aws_eks_cluster_ca_certificate
   }
 }
 
@@ -39,8 +57,8 @@ module "code-server" {
   namespace = "develop"
 
   providers = {
-    kubernetes = kubernetes,
-    helm       = helm
+    kubernetes = kubernetes.dev,
+    helm       = helm.dev
   }
 
   depends_on = [
@@ -79,7 +97,7 @@ module "grafana_monitoring" {
   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
   providers = {
-    kubernetes = kubernetes,
+    kubernetes = kubernetes.dev,
     grafana    = grafana
   }
 
@@ -117,8 +135,8 @@ module "drupal" {
   drupal_email = "anorris@rivasolutionsinc.com"
 
   providers = {
-    kubernetes = kubernetes,
-    helm       = helm
+    kubernetes = kubernetes.dev,
+    helm       = helm.dev
   }
 
   depends_on = [
