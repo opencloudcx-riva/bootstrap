@@ -23,6 +23,15 @@ The entire infrastructure is installed and managed using [Hashicorp Terraform](h
 | --------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | Windows Subsystem for Linux (WSL) | [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) | This is a robust linux capability for Windows 10 and Windows 11. Linux instructions are written for Ubuntu 20.04 LTS |
 
+##  Mac OSX Required
+
+| Toolset                           | Links                                                                      | Notes                                                                                                                |
+| --------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+|Brew Package Manager| [Install Homebrew](https://brew.sh/) | MacOSX Package Manager |
+| tfenv | `brew install tfenv` | Terraform version manager `tfenv list-remote` -> `tfenv install 1.0.8` -> `tfenv use 1.0.8`
+|Command-line JSON Processor|`brew install jq`|Lightweight and flexible command-line JSON processor|
+
+
 # Environment creation
 
 ## Initialize Terraform and Execute
