@@ -121,7 +121,19 @@ worker_groups = [
 
 <tr>
   <td><code>dns_zone</code></td>
-  <td>To experience the full impact of an OpenCloudCX installation, a valid, publicly accessible DNS zone needs to be supplied within the configuration. The default DNS Zone can be used for initial prototyping with appropriate local hosts file manipulation or kubectl port forwarding.</td>
+  <td>To experience the full impact of an OpenCloudCX installation, a valid, publicly accessible DNS zone needs to be supplied within the configuration. The default DNS Zone can be used for initial prototyping with appropriate local hosts file manipulation or kubectl port forwarding.
+  <br /><br />
+  NOTE: The referenced DNS zone in this configuation must already exist in the target account. Refer to <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html">these</a> instructions to create the zone. The following error message will be shown if the configuration is incorrect
+  
+  ```bash
+  Error: no matching Route53Zone found
+│
+│   with module.opencloudcx-aws-dev.data.aws_route53_zone.vpc,
+│   on .terraform/modules/opencloudcx-aws-dev/route53.tf line 1, in data "aws_route53_zone" "vpc":
+│    1: data "aws_route53_zone" "vpc" {
+  ```
+  
+  </td>
   <td>
 
 ```bash
