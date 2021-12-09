@@ -8,7 +8,7 @@ OpenCloudCX can use Terraform state buckets to store all infrastructure snapshot
 
 Follows [these]() instructions to create a unique bucket in the account where OpenCloudCX is going to be installed. A good convention for this project is to create and use `opencloucx-state-bucket-####` and replace `####` with the last 4 digits of the AWS account number.
 
-Once the bucket has been created, copy `state.tf.example` and rename the copy (not the original) to `state.tf`. Update the requested and save. If the default AWS profile is being used (from `~/.aws/credentials`) or the credentials are being passed through environment variables, the `access_key` and `secret_key` entries are not used.
+Once the bucket has been created, copy `state.tf.example` and rename the copy (not the original) to `state.tf`. Update the variables and save.
 
 ```bash
   backend "s3" {
@@ -20,7 +20,17 @@ Once the bucket has been created, copy `state.tf.example` and rename the copy (n
   }
 ```
 
-If you get the following error message, check your `access_key` and `secret_key`.
+Update the variables within the state file
+
+| Variable   | Explanation                         |
+| ---------- | ----------------------------------- |
+| key        | Filename of state file in s3 bucket |
+| bucket     | S3 bucket used to store state       |
+| region     | AWS region for file storage         |
+| access_key | AWS Access Key                      |
+| secret_key | AWS Secret Access Key               |
+
+NOTE: If the default AWS profile is being used (from `~/.aws/credentials`) or the credentials are being passed through environment variables, the `access_key` and `secret_key` entries are not used. If you get the following error message, check your `access_key` and `secret_key`.
 
 ```
 Initializing the backend...
