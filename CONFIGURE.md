@@ -55,11 +55,11 @@ Update the variables within each file for any desired configuration changes
 
 ## `secrets.auto.tfvars`
 
-| Variable                               | Explanation                                                                                                                   |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `access_key`                           | AWS Access Key                                                                                                                |
-| `secret_key`                           | AWS Secret Access Key                                                                                                         |
-| `kubernetes_secret_dockerhub_password` | Dockerhub password for posting images. This entry can be removed or commented out if no dockerhub account is being configured |
+| Variable                               | Explanation                                                                                                                                                       |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `access_key`                           | AWS Access Key                                                                                                                                                    |
+| `secret_key`                           | AWS Secret Access Key                                                                                                                                             |
+| `kubernetes_secret_dockerhub_password` | Dockerhub password for posting images. <p style="color:orange;"><i>This entry can be removed or commented out if no dockerhub account is being configured</i></p> |
 
 ## `variables.auto.tfvars`
 
@@ -155,7 +155,7 @@ dns_zone = "spinnaker.internal"
 
 <tr>
 <td><code>kubernetes_dockerhub_secret_name</code></td>
-<td>Named reference to the dockerhub secrets used when publishing to dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>Named reference to the dockerhub secrets used when publishing to dockerhub. <p style="color:orange;"><i>This entry can be removed or commented out if no dockerhub account is being configured.</i></p></td>
 <td>
 
 ```bash
@@ -167,7 +167,7 @@ kubernetes_dockerhub_secret_name = "my-dockerhub"
 
 <tr>
 <td><code>kubernetes_secret_dockerhub_username</code></td>
-<td>Username to use when authenticating to dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>Username to use when authenticating to dockerhub. <p style="color:orange;"><i>This entry can be removed or commented out if no dockerhub account is being configured.</i></p></td>
 <td>
 
 ```bash
@@ -179,7 +179,7 @@ kubernetes_secret_dockerhub_username = "username"
 
 <tr>
 <td><code>kubernetes_secret_dockerhub_email</code></td>
-<td>Email address for configuration in dockerhub. This entry can be removed or commented out if no dockerhub account is being configured.</td>
+<td>Email address for configuration in dockerhub. <p style="color:orange;"><i>This entry can be removed or commented out if no dockerhub account is being configured.</i></p></td>
 <td>
 
 ```bash
