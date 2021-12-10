@@ -11,6 +11,7 @@ module "opencloudcx-aws-nonprod" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "nonprod"
 
+  additional_namespaces = ["develop"]
 
   dns_zone = "nonprod.${var.dns_zone}"
 

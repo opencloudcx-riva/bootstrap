@@ -11,6 +11,7 @@ module "opencloudcx-aws-mgmt" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "mgmt"
 
+  additional_namespaces = ["develop"]
 
   dns_zone = "mgmt.${var.dns_zone}"
 

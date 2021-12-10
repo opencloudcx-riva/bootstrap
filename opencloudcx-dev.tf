@@ -10,7 +10,8 @@ module "opencloudcx-aws-dev" {
   map_roles        = var.eks_map_roles
   write_kubeconfig = var.write_kubeconfig
   stack            = "dev"
-
+  
+  additional_namespaces = ["develop"]
 
   dns_zone = "dev.${var.dns_zone}"
 

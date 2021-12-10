@@ -55,15 +55,15 @@ provider "helm" {
   }
 }
 
-resource "kubernetes_namespace" "develop" {
-  metadata {
-    name = "develop"
-  }
+# resource "kubernetes_namespace" "develop" {
+#   metadata {
+#     name = "develop"
+#   }
 
-  depends_on = [
-    module.opencloudcx-aws-mgmt
-  ]
-}
+#   depends_on = [
+#     module.opencloudcx-aws-mgmt
+#   ]
+# }
 
 module "code-server" {
   # source = "../module-code-server"
@@ -93,18 +93,19 @@ provider "grafana" {
   insecure_skip_verify = true
   auth                 = "admin:${module.opencloudcx-aws-mgmt.grafana_secret}"
   org_id               = 1
+  alias                = "mgmt"
 }
 
-data "kubernetes_secret" "grafana_admin" {
-  metadata {
-    name      = "grafana-secret"
-    namespace = "opencloudcx"
-  }
+# data "kubernetes_secret" "grafana_admin" {
+#   metadata {
+#     name      = "grafana-secret"
+#     namespace = "opencloudcx"
+#   }
 
-  depends_on = [
-    module.opencloudcx-aws-mgmt
-  ]
-}
+#   depends_on = [
+#     module.opencloudcx-aws-mgmt
+#   ]
+# }
 
 module "grafana_monitoring" {
   # source = "../module-grafana-monitoring"
@@ -114,7 +115,7 @@ module "grafana_monitoring" {
 
   providers = {
     kubernetes = kubernetes.mgmt,
-    grafana    = grafana
+    grafana    = grafana.mgmt
   }
 
   depends_on = [
