@@ -8,6 +8,22 @@ terraform {
 }
 
 provider "kubernetes" {
+  alias                  = "mgmt"
+  host                   = module.opencloudcx-aws-mgmt.aws_eks_cluster_endpoint
+  token                  = module.opencloudcx-aws-mgmt.aws_eks_cluster_auth_token
+  cluster_ca_certificate = module.opencloudcx-aws-mgmt.aws_eks_cluster_ca_certificate
+}
+
+provider "helm" {
+  alias = "mgmt"
+  kubernetes {
+    host                   = module.opencloudcx-aws-mgmt.aws_eks_cluster_endpoint
+    token                  = module.opencloudcx-aws-mgmt.aws_eks_cluster_auth_token
+    cluster_ca_certificate = module.opencloudcx-aws-mgmt.aws_eks_cluster_ca_certificate
+  }
+}
+
+provider "kubernetes" {
   alias                  = "dev"
   host                   = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
   token                  = module.opencloudcx-aws-dev.aws_eks_cluster_auth_token
@@ -45,7 +61,7 @@ resource "kubernetes_namespace" "develop" {
   }
 
   depends_on = [
-    module.opencloudcx-aws-dev
+    module.opencloudcx-aws-mgmt
   ]
 }
 
@@ -57,12 +73,12 @@ module "code-server" {
   namespace = "develop"
 
   providers = {
-    kubernetes = kubernetes.dev,
-    helm       = helm.dev
+    kubernetes = kubernetes.mgmt,
+    helm       = helm.mgmt
   }
 
   depends_on = [
-    module.opencloudcx-aws-dev,
+    module.opencloudcx-aws-mgmt,
   ]
 }
 
@@ -75,7 +91,7 @@ output "codeserver_password" {
 provider "grafana" {
   url                  = "https://grafana.${var.dns_zone}"
   insecure_skip_verify = true
-  auth                 = "admin:${module.opencloudcx-aws-dev.grafana_secret}"
+  auth                 = "admin:${module.opencloudcx-aws-mgmt.grafana_secret}"
   org_id               = 1
 }
 
@@ -86,7 +102,7 @@ data "kubernetes_secret" "grafana_admin" {
   }
 
   depends_on = [
-    module.opencloudcx-aws-dev
+    module.opencloudcx-aws-mgmt
   ]
 }
 
@@ -97,12 +113,12 @@ module "grafana_monitoring" {
   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
   providers = {
-    kubernetes = kubernetes.dev,
+    kubernetes = kubernetes.mgmt,
     grafana    = grafana
   }
 
   depends_on = [
-    module.opencloudcx-aws-dev,
+    module.opencloudcx-aws-mgmt,
   ]
 }
 
@@ -135,12 +151,12 @@ module "drupal" {
   drupal_email = "anorris@rivasolutionsinc.com"
 
   providers = {
-    kubernetes = kubernetes.dev,
-    helm       = helm.dev
+    kubernetes = kubernetes.mgmt,
+    helm       = helm.mgmt
   }
 
   depends_on = [
-    module.opencloudcx-aws-dev,
+    module.opencloudcx-aws-mgmt,
   ]
 }
 
