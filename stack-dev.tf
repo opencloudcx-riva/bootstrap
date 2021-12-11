@@ -59,3 +59,14 @@ output "codeserver_password" {
   value = nonsensitive(module.code-server.module_secret)
 }
 
+output "aws_eks_cluster_endpoint_dev" {
+  value = module.opencloudcx-aws-dev.aws_eks_cluster_endpoint
+}
+
+output "aws_eks_cluster_auth_token_dev" {
+  value = nonsensitive(module.opencloudcx-aws-dev.aws_eks_cluster_auth_token)
+}
+
+output "aws_eks_cluster_ca_certificate_dev" {
+  value = module.opencloudcx-aws-dev.aws_eks_cluster_ca_certificate
+}

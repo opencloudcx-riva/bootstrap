@@ -36,3 +36,14 @@ module "mariadb-nonprod" {
   ]
 }
 
+output "aws_eks_cluster_endpoint_nonprod" {
+  value = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint
+}
+
+output "aws_eks_cluster_auth_token_nonprod" {
+  value = nonsensitive(module.opencloudcx-aws-nonprod.aws_eks_cluster_auth_token)
+}
+
+output "aws_eks_cluster_ca_certificate_nonprod" {
+  value = module.opencloudcx-aws-nonprod.aws_eks_cluster_ca_certificate
+}

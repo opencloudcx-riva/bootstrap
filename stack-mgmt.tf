@@ -39,3 +39,14 @@ module "opencloudcx-aws-mgmt" {
 #   ]
 # }
 
+output "aws_eks_cluster_endpoint_mgmt" {
+  value = module.opencloudcx-aws-mgmt.aws_eks_cluster_endpoint
+}
+
+output "aws_eks_cluster_auth_token_mgmt" {
+  value = nonsensitive(module.opencloudcx-aws-mgmt.aws_eks_cluster_auth_token)
+}
+
+output "aws_eks_cluster_ca_certificate_mgmt" {
+  value = module.opencloudcx-aws-mgmt.aws_eks_cluster_ca_certificate
+}
