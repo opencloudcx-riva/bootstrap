@@ -2,7 +2,7 @@ module "opencloudcx-aws-mgmt" {
   source = "../module-opencloudcx-aws"
   # source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
 
-  name             = "opencloudcx-mgmt-${random_string.scope.result}"
+  name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version
   region           = var.aws_region
   worker_groups    = var.worker_groups
@@ -11,7 +11,9 @@ module "opencloudcx-aws-mgmt" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "mgmt"
 
-  additional_namespaces = ["develop"]
+  private_subnets = ["10.0.10.0/24", "10.0.20.0/24", "10.0.30.0/24"]
+  public_subnets  = ["10.0.40.0/24", "10.0.50.0/24", "10.0.60.0/24"]
+  cidr            = "10.0.0.0/16"
 
   dns_zone = "mgmt.${var.dns_zone}"
 
@@ -20,4 +22,20 @@ module "opencloudcx-aws-mgmt" {
   kubernetes_secret_dockerhub_password = var.kubernetes_secret_dockerhub_password
   kubernetes_secret_dockerhub_email    = var.kubernetes_secret_dockerhub_email
 }
+
+# module "grafana_monitoring" {
+#   # source = "../module-grafana-monitoring"
+#   source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
+
+#   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
+
+#   providers = {
+#     kubernetes = kubernetes.mgmt,
+#     grafana    = grafana.mgmt
+#   }
+
+#   depends_on = [
+#     module.opencloudcx-aws-mgmt,
+#   ]
+# }
 
