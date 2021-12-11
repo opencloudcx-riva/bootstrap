@@ -42,7 +42,8 @@ module "mariadb-dev" {
   # source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
 
   dns_zone  = "dev.${var.dns_zone}"
-  namespace    = "develop"
+  namespace = "develop"
+  stack     = "dev"
 
   providers = {
     kubernetes = kubernetes.dev,

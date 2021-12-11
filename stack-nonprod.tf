@@ -23,7 +23,8 @@ module "mariadb-nonprod" {
   # source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
 
   dns_zone  = "nonprod.${var.dns_zone}"
-  namespace    = "default"
+  namespace = "default"
+  stack     = "nonprod"
 
   providers = {
     kubernetes = kubernetes.nonprod,
