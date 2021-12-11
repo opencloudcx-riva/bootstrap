@@ -11,9 +11,9 @@ output "aws_eks_cluster_ca_certificate" {
 }
 
 output "jenkins_password" {
-  value = nonsensitive(module.opencloudcx-aws-dev.jenkins_secret)
+  value = nonsensitive(module.opencloudcx-aws-mgmt.jenkins_secret)
 }
 
 output "grafana_password" {
-  value = nonsensitive(module.opencloudcx-aws-dev.grafana_secret)
+  value = nonsensitive(module.opencloudcx-aws-mgmt.grafana_secret)
 }
