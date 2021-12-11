@@ -33,7 +33,7 @@ resource "kubernetes_namespace" "develop" {
 
 module "code-server" {
   # source = "../module-code-server"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-code-server?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-code-server?ref=demo"
 
   dns_zone  = var.dns_zone
   namespace = "develop"
@@ -74,7 +74,7 @@ data "kubernetes_secret" "grafana_admin" {
 
 module "grafana_monitoring" {
   # source = "../module-grafana-monitoring"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=demo"
 
   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
@@ -110,7 +110,7 @@ module "grafana_monitoring" {
 
 module "drupal" {
   # source = "../module-drupal"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-drupal?ref=demo"
 
   dns_zone     = var.dns_zone
   namespace    = "develop"

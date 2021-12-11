@@ -7,7 +7,7 @@ locals {
 
 module "opencloudcx-aws-dev" {
   # source = "../module-opencloudcx-aws"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=demo"
 
   name             = local.name
   cluster_version  = var.kubernetes_version
