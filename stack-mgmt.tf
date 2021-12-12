@@ -41,6 +41,8 @@ module "opencloudcx-aws-mgmt" {
 
   dns_zone = var.dns_zone
 
+  ecr_repos = ["test"]
+
   kubernetes_dockerhub_secret_name     = var.kubernetes_dockerhub_secret_name
   kubernetes_secret_dockerhub_username = var.kubernetes_secret_dockerhub_username
   kubernetes_secret_dockerhub_password = var.kubernetes_secret_dockerhub_password
