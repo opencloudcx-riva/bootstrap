@@ -30,7 +30,9 @@ function getEksInfo() {
     if [ ! -z "$_thing" ]; then
       _dashboardToken=$(kubectl get secret -n spinnaker "$_thing" -o go-template="{{.data.token | base64decode}}" 2> /dev/null)  
       if [ ! -z "$_dashboardToken" ]; then
-        _passwordTable="${_passwordTable}\nDashboard token,${_dashboardToken}"
+        echo "Dashboard token --> ${_dashboardToken}"
+        echo ""
+        # _passwordTable="${_passwordTable}\nDashboard token,${_dashboardToken}"
       fi
     fi
 
