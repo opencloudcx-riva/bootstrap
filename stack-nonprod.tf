@@ -1,3 +1,19 @@
+provider "kubernetes" {
+  alias                  = "nonprod"
+  host                   = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint
+  token                  = module.opencloudcx-aws-nonprod.aws_eks_cluster_auth_token
+  cluster_ca_certificate = module.opencloudcx-aws-nonprod.aws_eks_cluster_ca_certificate
+}
+
+provider "helm" {
+  alias = "nonprod"
+  kubernetes {
+    host                   = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint
+    token                  = module.opencloudcx-aws-nonprod.aws_eks_cluster_auth_token
+    cluster_ca_certificate = module.opencloudcx-aws-nonprod.aws_eks_cluster_ca_certificate
+  }
+}
+
 module "opencloudcx-aws-nonprod" {
   source = "../module-eks-aws"
   # source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
