@@ -33,7 +33,7 @@ module "opencloudcx-aws-dev" {
 
   additional_namespaces = ["develop"]
 
-  dns_zone = "dev.${var.dns_zone}"
+  dns_zone = var.dns_zone
 }
 
 module "code-server" {

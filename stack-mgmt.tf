@@ -39,7 +39,7 @@ module "opencloudcx-aws-mgmt" {
   public_subnets  = ["10.0.40.0/24", "10.0.50.0/24", "10.0.60.0/24"]
   cidr            = "10.0.0.0/16"
 
-  dns_zone = "mgmt.${var.dns_zone}"
+  dns_zone = var.dns_zone
 
   kubernetes_dockerhub_secret_name     = var.kubernetes_dockerhub_secret_name
   kubernetes_secret_dockerhub_username = var.kubernetes_secret_dockerhub_username
