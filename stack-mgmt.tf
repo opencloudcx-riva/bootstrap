@@ -47,21 +47,21 @@ module "opencloudcx-aws-mgmt" {
   kubernetes_secret_dockerhub_email    = var.kubernetes_secret_dockerhub_email
 }
 
-# module "grafana_monitoring" {
-#   # source = "../module-grafana-monitoring"
-#   source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
+module "grafana_monitoring" {
+  # source = "../module-grafana-monitoring"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=develop"
 
-#   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
+  prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
-#   providers = {
-#     kubernetes = kubernetes.mgmt,
-#     grafana    = grafana.mgmt
-#   }
+  providers = {
+    kubernetes = kubernetes.mgmt,
+    grafana    = grafana.mgmt
+  }
 
-#   depends_on = [
-#     module.opencloudcx-aws-mgmt,
-#   ]
-# }
+  depends_on = [
+    module.opencloudcx-aws-mgmt,
+  ]
+}
 
 output "aws_eks_cluster_endpoint_mgmt" {
   value = module.opencloudcx-aws-mgmt.aws_eks_cluster_endpoint
