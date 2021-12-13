@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo ""
+echo "Attempting to connect to the k8s clusters..."
+echo ""
+
 function usage() {
     echo "usage: connect.sh [options]"
     echo " "
@@ -30,7 +34,9 @@ function getEksInfo() {
     if [ ! -z "$_thing" ]; then
       _dashboardToken=$(kubectl get secret -n spinnaker "$_thing" -o go-template="{{.data.token | base64decode}}" 2> /dev/null)  
       if [ ! -z "$_dashboardToken" ]; then
-        echo "Dashboard token --> ${_dashboardToken}"
+        echo "Dashboard token"
+        echo "---------------"
+        echo "${_dashboardToken}"
         echo ""
         # _passwordTable="${_passwordTable}\nDashboard token,${_dashboardToken}"
       fi
@@ -56,11 +62,11 @@ function getEksInfo() {
       echo "----------------------"
       echo -e $_passwordTable | column -t -x -s ',' 
       echo ""
+    else
+      echo "No resources to list..."
     fi
     
     echo ""
-    echo ""
-
   fi
 
 }
