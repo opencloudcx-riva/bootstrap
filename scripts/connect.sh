@@ -61,14 +61,11 @@ function getEksInfo() {
       echo "Services and Passwords"
       echo "----------------------"
       echo -e $_passwordTable | column -t -x -s ',' 
-      echo ""
     else
       echo "No resources to list..."
     fi
-    
     echo ""
   fi
-
 }
 
 _PROFILE="default"
@@ -110,4 +107,5 @@ export -f getEksInfo
 
 aws eks list-clusters --profile odos-tc --region us-east-1 | jq -j ".clusters" | xargs -n 1 -I {} bash -c 'getEksInfo "'$_PROFILE'" "$@"' _ {}
 
+echo ""
 echo " *************** Current context --> [$(kubectl config current-context)] ***************"
