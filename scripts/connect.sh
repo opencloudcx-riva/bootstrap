@@ -109,3 +109,4 @@ aws eks list-clusters --profile odos-tc --region us-east-1 | jq -j ".clusters" |
 
 echo ""
 echo " *************** Current context --> [$(kubectl config current-context)] ***************"
+echo ""
