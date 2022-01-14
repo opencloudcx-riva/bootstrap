@@ -105,7 +105,7 @@ fi
 export -f usage
 export -f getEksInfo
 
-aws eks list-clusters --profile odos-tc --region us-east-1 | jq -j ".clusters" | xargs -n 1 -I {} bash -c 'getEksInfo "'$_PROFILE'" "$@"' _ {}
+aws eks list-clusters --profile $_PROFILE --region us-east-1 | jq -j ".clusters" | xargs -n 1 -I {} bash -c 'getEksInfo "'$_PROFILE'" "$@"' _ {}
 
 echo ""
 echo " *************** Current context --> [$(kubectl config current-context)] ***************"
