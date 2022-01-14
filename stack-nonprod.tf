@@ -27,9 +27,10 @@ module "opencloudcx-aws-nonprod" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "nonprod"
 
-  private_subnets = ["10.2.10.0/24", "10.2.20.0/24", "10.2.30.0/24"]
-  public_subnets  = ["10.2.40.0/24", "10.2.50.0/24", "10.2.60.0/24"]
-  cidr            = "10.2.0.0/16"
+  aws_certificate_arn = var.aws_certificate_arn
+  private_subnets     = ["10.2.10.0/24", "10.2.20.0/24", "10.2.30.0/24"]
+  public_subnets      = ["10.2.40.0/24", "10.2.50.0/24", "10.2.60.0/24"]
+  cidr                = "10.2.0.0/16"
 
   dns_zone = var.dns_zone
 }

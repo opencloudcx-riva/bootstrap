@@ -27,9 +27,10 @@ module "opencloudcx-aws-dev" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "dev"
 
-  private_subnets = ["10.1.10.0/24", "10.1.20.0/24", "10.1.30.0/24"]
-  public_subnets  = ["10.1.40.0/24", "10.1.50.0/24", "10.1.60.0/24"]
-  cidr            = "10.1.0.0/16"
+  aws_certificate_arn = var.aws_certificate_arn
+  private_subnets     = ["10.1.10.0/24", "10.1.20.0/24", "10.1.30.0/24"]
+  public_subnets      = ["10.1.40.0/24", "10.1.50.0/24", "10.1.60.0/24"]
+  cidr                = "10.1.0.0/16"
 
   additional_namespaces = ["develop"]
 
