@@ -55,8 +55,8 @@ module "code-server" {
 }
 
 module "mariadb-dev" {
-  source = "../module-mariadb"
-  # source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
+  # source = "../module-mariadb"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
