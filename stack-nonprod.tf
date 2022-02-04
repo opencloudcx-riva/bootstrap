@@ -15,8 +15,8 @@ provider "helm" {
 }
 
 module "opencloudcx-aws-nonprod" {
-  source = "../module-eks-aws"
-  # source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
+  # source = "../module-eks-aws"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=develop"
 
   name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version
@@ -36,8 +36,8 @@ module "opencloudcx-aws-nonprod" {
 }
 
 module "mariadb-nonprod" {
-  source = "../module-mariadb"
-  # source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
+  # source = "../module-mariadb"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
 
   dns_zone  = "nonprod.${var.dns_zone}"
   namespace = "default"
