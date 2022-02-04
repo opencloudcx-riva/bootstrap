@@ -35,9 +35,9 @@ module "opencloudcx-aws-mgmt" {
   write_kubeconfig = var.write_kubeconfig
   stack            = "mgmt"
 
-  aws_certificate_arn         = var.aws_certificate_arn
-  aws_certificate_cname       = var.aws_certificate_cname
-  aws_certificate_cname_value = var.aws_certificate_cname_value
+  # aws_certificate_arn         = var.aws_certificate_arn
+  # aws_certificate_cname       = var.aws_certificate_cname
+  # aws_certificate_cname_value = var.aws_certificate_cname_value
 
   private_subnets = ["10.0.10.0/24", "10.0.20.0/24", "10.0.30.0/24"]
   public_subnets  = ["10.0.40.0/24", "10.0.50.0/24", "10.0.60.0/24"]
