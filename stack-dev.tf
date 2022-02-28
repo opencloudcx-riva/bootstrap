@@ -60,7 +60,6 @@ module "mariadb-dev" {
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
-  stack     = "dev"
 
   providers = {
     kubernetes = kubernetes.dev,
