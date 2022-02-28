@@ -16,7 +16,7 @@ provider "helm" {
 
 module "opencloudcx-aws-dev" {
   # source = "../module-eks-aws"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-eks-aws?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-eks-aws?ref=demo"
 
   name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version
@@ -39,7 +39,7 @@ module "opencloudcx-aws-dev" {
 
 module "code-server" {
   # source = "../module-code-server"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-code-server?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-code-server?ref=demo"
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
@@ -56,7 +56,7 @@ module "code-server" {
 
 module "mariadb-dev" {
   # source = "../module-mariadb"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
+  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=demo"
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
