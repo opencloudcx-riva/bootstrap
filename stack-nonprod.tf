@@ -41,7 +41,6 @@ module "mariadb-nonprod" {
 
   dns_zone  = "nonprod.${var.dns_zone}"
   namespace = "default"
-  stack     = "nonprod"
 
   providers = {
     kubernetes = kubernetes.nonprod,
