@@ -1,9 +1,3 @@
-terraform {
-  required_providers {
-    aws  = "~> 3.74.1"
-  }
-}
-
 provider "aws" {
   region     = var.aws_region
   access_key = var.access_key
