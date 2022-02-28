@@ -107,3 +107,19 @@ variable "kubernetes_secret_dockerhub_email" {
   default     = "username@spinnaker.internal"
   type        = string
 }
+
+# variable "aws_certificate_arn" {
+#   description = "AWS SSL certificate ARN"
+#   type        = string
+# }
+
+# variable "aws_certificate_cname" {
+#   description = "AWS SSL certificate ARN"
+#   type        = string
+# }
+
+# variable "aws_certificate_cname_value" {
+#   description = "AWS SSL certificate ARN"
+#   type        = string
+# }
+

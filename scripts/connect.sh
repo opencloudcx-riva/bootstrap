@@ -1,16 +1,78 @@
 #!/bin/bash
 
+echo ""
+echo "Attempting to connect to the k8s clusters..."
+echo ""
+
 function usage() {
     echo "usage: connect.sh [options]"
     echo " "
     echo "  options:"
     echo " "
-    echo "    -p, --profile   AWS profile name to use for execution"
-    echo "    -d. --default   Use default profile"
+    echo "    -p,  --profile       AWS profile name to use for execution"
+    echo "    -d,  --default       Use default profile"
+    echo "    -ec, --end-context   Script will change to this context at completion"
     echo " "
 }
 
+function getEksInfo() {
+
+  if [ $2 != "[" ] && [ $2 != "]" ]; then
+    _k8sName=$(echo $2 | sed 's/,*$//g')
+
+    IFS='-'
+    read -ra STACKNAME <<< "$2"
+    _stackName="$(echo ${STACKNAME[2]} | sed 's/,*$//g' )"
+
+    aws eks --region us-east-1 update-kubeconfig --name "$_k8sName" --alias "$_stackName" --profile "$1" > /dev/null
+    kubectl config use-context $_stackName > /dev/null
+
+    echo "==================== $_stackName stack"
+    echo ""
+
+    _thing=$(kubectl get sa/k8s-dashboard-admin --namespace spinnaker -o jsonpath="{.secrets[0].name}" 2> /dev/null) 
+
+    if [ ! -z "$_thing" ]; then
+      _dashboardToken=$(kubectl get secret -n spinnaker "$_thing" -o go-template="{{.data.token | base64decode}}" 2> /dev/null)  
+      if [ ! -z "$_dashboardToken" ]; then
+        echo "Dashboard token"
+        echo "---------------"
+        echo "${_dashboardToken}"
+        echo ""
+        # _passwordTable="${_passwordTable}\nDashboard token,${_dashboardToken}"
+      fi
+    fi
+
+    _jenkinsPw=$(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" 2> /dev/null | base64 --decode) 
+    if [ ! -z "$_jenkinsPw" ]; then
+      _passwordTable="${_passwordTable}\nJenkins,${_jenkinsPw}"
+    fi
+
+    _grafanaPw=$(kubectl get secret --namespace opencloudcx grafana-admin -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode)
+    if [ ! -z "$_grafanaPw" ]; then
+      _passwordTable="${_passwordTable}\nGrafana,${_grafanaPw}"
+    fi
+
+    _codeserverPw=$(kubectl get secret --namespace develop code-server -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode)
+    if [ ! -z "$_codeserverPw" ]; then
+      _passwordTable="${_passwordTable}\nCodeServer,${_codeserverPw}"
+    fi
+
+    if [ ! -z "$_passwordTable" ]; then
+      echo "Services and Passwords"
+      echo "----------------------"
+      echo -e $_passwordTable | column -t -x -s ',' 
+    else
+      echo "No resources to list..."
+    fi
+    echo ""
+  fi
+}
+
+_PROFILE="default"
+_CONTEXT=""
 _POSITIONAL=()
+
 while [[ $# -gt 0 ]]
 do
 _key="$1"
@@ -23,6 +85,11 @@ case $_key in
     ;;
   -d|--default)
     _PROFILE="default"
+    shift
+    shift
+    ;;
+  -ec|--end-context)
+    _CONTEXT="$2"
     shift
     shift
     ;;
@@ -41,40 +108,16 @@ if [ -z "$_PROFILE" ]; then
   echo "No profile specified. Defaulting to [default] entry in configuration (~/.aws/credentials). Use -p to specify a named profile to use."
   _PROFILE="default"
 fi
-_k8sName=$(aws eks list-clusters --profile $_PROFILE --region us-east-1 | jq -r ".clusters[0]")
 
-if [ -z "$_k8sName" ]; then
-  echo " "
-  echo "No kubernetes cluster found for [$_PROFILE] profile. Exiting."
-  exit
+export -f usage
+export -f getEksInfo
+
+aws eks list-clusters --profile $_PROFILE --region us-east-1 | jq -j ".clusters" | xargs -n 1 -I {} bash -c 'getEksInfo "'$_PROFILE'" "$@"' _ {}
+
+if [ ! -z "$_CONTEXT" ]; then
+  kubectl config use-context $_CONTEXT
 fi
 
-# do the mubectl thing
-aws eks --region us-east-1 update-kubeconfig --name "$_k8sName" --profile $_PROFILE
-echo''
-
-# get k8s node name and store it
-echo "Cluster name --> $_k8sName"
-echo''
-
-# print dashboard token
-_dashboardToken=$(kubectl get secret -n spinnaker $(kubectl get sa/k8s-dashboard-admin --namespace spinnaker -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}")
-echo "Dashboard token --> $_dashboardToken"
-echo''
-
-_passwordTable=""
-
-#display passwords
-_jenkinsPw=$(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode) 
-_passwordTable="${_passwordTable}\nJenkins,${_jenkinsPw}"
-
-_grafanaPw=$(kubectl get secret --namespace opencloudcx grafana-admin -o jsonpath="{.data.password}" | base64 --decode)
-_passwordTable="${_passwordTable}\nGrafana,${_grafanaPw}"
-
-_codeserverPw=$(kubectl get secret --namespace develop code-server -o jsonpath="{.data.password}" | base64 --decode)
-_passwordTable="${_passwordTable}\nCodeServer,${_codeserverPw}"
-
-echo "Services and Passwords"
-echo "----------------------"
-echo -e $_passwordTable | column -t -s ',' 
+echo ""
+echo " *************** Current context --> [$(kubectl config current-context)] ***************"
 echo ""
