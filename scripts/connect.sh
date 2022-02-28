@@ -9,8 +9,9 @@ function usage() {
     echo " "
     echo "  options:"
     echo " "
-    echo "    -p, --profile   AWS profile name to use for execution"
-    echo "    -d. --default   Use default profile"
+    echo "    -p,  --profile       AWS profile name to use for execution"
+    echo "    -d,  --default       Use default profile"
+    echo "    -ec, --end-context   Script will change to this context at completion"
     echo " "
 }
 
@@ -69,6 +70,7 @@ function getEksInfo() {
 }
 
 _PROFILE="default"
+_CONTEXT=""
 _POSITIONAL=()
 
 while [[ $# -gt 0 ]]
@@ -83,6 +85,11 @@ case $_key in
     ;;
   -d|--default)
     _PROFILE="default"
+    shift
+    shift
+    ;;
+  -ec|--end-context)
+    _CONTEXT="$2"
     shift
     shift
     ;;
@@ -106,6 +113,10 @@ export -f usage
 export -f getEksInfo
 
 aws eks list-clusters --profile $_PROFILE --region us-east-1 | jq -j ".clusters" | xargs -n 1 -I {} bash -c 'getEksInfo "'$_PROFILE'" "$@"' _ {}
+
+if [ ! -z "$_CONTEXT" ]; then
+  kubectl config use-context $_CONTEXT
+fi
 
 echo ""
 echo " *************** Current context --> [$(kubectl config current-context)] ***************"
