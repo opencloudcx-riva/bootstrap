@@ -54,22 +54,22 @@ module "code-server" {
   ]
 }
 
-module "mariadb-dev" {
-  # source = "../module-mariadb"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=demo"
+# module "mariadb-dev" {
+#   # source = "../module-mariadb"
+#   source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=demo"
 
-  dns_zone  = "dev.${var.dns_zone}"
-  namespace = "develop"
+#   dns_zone  = "dev.${var.dns_zone}"
+#   namespace = "develop"
 
-  providers = {
-    kubernetes = kubernetes.dev,
-    helm       = helm.dev
-  }
+#   providers = {
+#     kubernetes = kubernetes.dev,
+#     helm       = helm.dev
+#   }
 
-  depends_on = [
-    module.opencloudcx-aws-dev,
-  ]
-}
+#   depends_on = [
+#     module.opencloudcx-aws-dev,
+#   ]
+# }
 
 output "codeserver_password" {
   value = nonsensitive(module.code-server.module_secret)
