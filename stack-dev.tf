@@ -43,7 +43,6 @@ module "code-server" {
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
-  prefix    = "dev"
 
   providers = {
     kubernetes = kubernetes.dev,
@@ -61,6 +60,7 @@ module "mariadb-dev" {
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
+  prefix    = "dev"
 
   providers = {
     kubernetes = kubernetes.dev,
