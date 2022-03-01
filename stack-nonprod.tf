@@ -32,6 +32,8 @@ module "opencloudcx-aws-nonprod" {
   public_subnets      = ["10.2.40.0/24", "10.2.50.0/24", "10.2.60.0/24"]
   cidr                = "10.2.0.0/16"
 
+  additional_namespaces = ["develop"]
+
   dns_zone = var.dns_zone
 }
 
@@ -41,6 +43,7 @@ module "mariadb-nonprod" {
 
   dns_zone  = "nonprod.${var.dns_zone}"
   namespace = "default"
+  prefix    = "nonprod"
 
   providers = {
     kubernetes = kubernetes.nonprod,
