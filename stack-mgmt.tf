@@ -1,3 +1,5 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 provider "grafana" {
   url                  = "https://grafana.mgmt.${var.dns_zone}"
   insecure_skip_verify = true

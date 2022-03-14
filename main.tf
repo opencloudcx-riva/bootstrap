@@ -1,3 +1,5 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 provider "aws" {
   region     = var.aws_region
   access_key = var.access_key

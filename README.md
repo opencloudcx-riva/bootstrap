@@ -1,3 +1,5 @@
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />
+
 <center>
 
 # What is OpenCloudCX?
@@ -46,3 +48,5 @@ For project configuration, refer to [CONFIGURE.md](CONFIGURE.md)<br />
 
 For command-line environment creation, refer to [INSTALL-LOCAL.md](INSTALL-LOCAL.md)<br />
 For [Terraform Cloud](https://www.terraform.io/cloud?utm_source=hashicorp_com&utm_content=pricing_tfc) environment creation, refer to [INSTALL-TERRAFORMCLOUD.md](INSTALL-TERRAFORMCLOUD.md)<br />
+
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />

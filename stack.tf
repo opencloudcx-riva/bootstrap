@@ -1,3 +1,5 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 terraform {
   required_providers {
     aws = "~> 3.74"

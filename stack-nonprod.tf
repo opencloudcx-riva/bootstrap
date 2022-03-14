@@ -1,3 +1,5 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 provider "kubernetes" {
   alias                  = "nonprod"
   host                   = module.opencloudcx-aws-nonprod.aws_eks_cluster_endpoint

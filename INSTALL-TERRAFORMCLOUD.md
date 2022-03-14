@@ -1,3 +1,5 @@
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />
+
 # OpenCloudCX setup in AWS
 
 # [Terraform Cloud](https://www.terraform.io/cloud) Setup
@@ -128,3 +130,5 @@ namespace "spinnaker" deleted
 ```
 
 Once this command completes (it may take a while), re execute the `destroy` command again.
+
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />

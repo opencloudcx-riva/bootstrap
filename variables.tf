@@ -1,3 +1,5 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 variable "aws_region" {
   description = "The aws region to deploy the service into"
   type        = string

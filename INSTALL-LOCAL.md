@@ -1,3 +1,5 @@
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />
+
 # OpenCloudCX setup in AWS
 
 This repository contains a framework to use for creation of an OpenCloudCX cluster. After cloning this repository, refer to the below sections for configuration. These instructions are intended to be executed after a project has been created per configuration instructions.
@@ -23,14 +25,13 @@ The entire infrastructure is installed and managed using [Hashicorp Terraform](h
 | --------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | Windows Subsystem for Linux (WSL) | [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10) | This is a robust linux capability for Windows 10 and Windows 11. Linux instructions are written for Ubuntu 20.04 LTS |
 
-##  Mac OSX Required
+## Mac OSX Required
 
-| Toolset                           | Links                                                                      | Notes                                                                                                                |
-| --------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-|Brew Package Manager| [Install Homebrew](https://brew.sh/) | MacOSX Package Manager |
-| tfenv | `brew install tfenv` | Terraform version manager `tfenv list-remote` -> `tfenv install 1.0.8` -> `tfenv use 1.0.8`
-|Command-line JSON Processor|`brew install jq`|Lightweight and flexible command-line JSON processor|
-
+| Toolset                     | Links                                | Notes                                                                                       |
+| --------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------- |
+| Brew Package Manager        | [Install Homebrew](https://brew.sh/) | MacOSX Package Manager                                                                      |
+| tfenv                       | `brew install tfenv`                 | Terraform version manager `tfenv list-remote` -> `tfenv install 1.0.8` -> `tfenv use 1.0.8` |
+| Command-line JSON Processor | `brew install jq`                    | Lightweight and flexible command-line JSON processor                                        |
 
 # Environment creation
 
@@ -173,3 +174,5 @@ namespace "spinnaker" deleted
 ```
 
 Once this command completes (it may take a while), re execute the `destroy` command again.
+
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by RIVA Solutions Inc 2022.  Authorized Use Only</i></div><br />

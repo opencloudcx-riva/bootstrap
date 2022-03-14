@@ -1,3 +1,5 @@
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by Riva Solutions Inc 2022.  Authorized Use Only</i></div><br />
+
 # OpenCloudCX Project Configuration
 
 ## AWS S3 State Bucket
@@ -266,3 +268,5 @@ To include OpenCloudCX modules, refer to the individual plugin README page for i
 </tr>
 
 </table>
+
+<div style="text-align: center; font-weight: bolder; color: red; font-size: 16pt;"><i>Developed by Riva Solutions Inc 2022.  Authorized Use Only</i></div><br />
