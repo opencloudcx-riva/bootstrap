@@ -39,7 +39,7 @@ module "opencloudcx-aws-dev" {
 
 module "code-server" {
   # source = "../module-code-server"
-  source = "git::ssh://git@github.com/OpenCopencloudcx-rivaloudCX/module-code-server?ref=demo"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-code-server?ref=demo"
 
   dns_zone  = "dev.${var.dns_zone}"
   namespace = "develop"
