@@ -24,7 +24,7 @@ provider "helm" {
 
 module "opencloudcx-aws-mgmt" {
   # source = "../module-opencloudcx-aws"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-opencloudcx-aws?ref=demo"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-opencloudcx-aws?ref=demo"
 
   name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version
@@ -55,7 +55,7 @@ module "opencloudcx-aws-mgmt" {
 
 module "grafana_monitoring" {
   # source = "../module-grafana-monitoring"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-grafana-monitoring?ref=demo"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-grafana-monitoring?ref=demo"
 
   prometheus_endpoint = "http://prometheus-server.opencloudcx.svc.cluster.local"
 
