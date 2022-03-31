@@ -48,6 +48,11 @@ function getEksInfo() {
       _passwordTable="${_passwordTable}\nJenkins,${_jenkinsPw}"
     fi
 
+    _sonarPw=$(kubectl get secret --namespace jenkins sonarqube-admin -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode) 
+    if [ ! -z "$_sonarPw" ]; then
+      _passwordTable="${_passwordTable}\nSonarQube,${_sonarPw}"
+    fi
+
     _grafanaPw=$(kubectl get secret --namespace opencloudcx grafana-admin -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode)
     if [ ! -z "$_grafanaPw" ]; then
       _passwordTable="${_passwordTable}\nGrafana,${_grafanaPw}"
@@ -56,6 +61,11 @@ function getEksInfo() {
     _codeserverPw=$(kubectl get secret --namespace develop code-server -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode)
     if [ ! -z "$_codeserverPw" ]; then
       _passwordTable="${_passwordTable}\nCodeServer,${_codeserverPw}"
+    fi
+
+    _mariaPw=$(kubectl get secret --namespace develop mariadb-root-password -o jsonpath="{.data.password}" 2> /dev/null | base64 --decode)
+    if [ ! -z "$_mariaPw" ]; then
+      _passwordTable="${_passwordTable}\nMariaDB Root Password,${_mariaPw}"
     fi
 
     if [ ! -z "$_passwordTable" ]; then
