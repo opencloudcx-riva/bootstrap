@@ -7,3 +7,11 @@ output "jenkins_password" {
 output "grafana_password" {
   value = nonsensitive(module.opencloudcx-aws-mgmt.grafana_secret)
 }
+
+output "sonarqube_password" {
+  value = nonsensitive(module.opencloudcx-aws-mgmt.sonarqube_secret)
+}
+
+# output "sonarqube_key" {
+#   value = module.opencloudcx-aws-mgmt.sonarqube_key
+# }

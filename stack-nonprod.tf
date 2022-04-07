@@ -18,7 +18,7 @@ provider "helm" {
 
 module "opencloudcx-aws-nonprod" {
   # source = "../module-eks-aws"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-eks-aws?ref=develop"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-eks-aws?ref=demo"
 
   name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version
@@ -30,20 +30,22 @@ module "opencloudcx-aws-nonprod" {
   stack            = "nonprod"
 
   # aws_certificate_arn = var.aws_certificate_arn
-  private_subnets     = ["10.2.10.0/24", "10.2.20.0/24", "10.2.30.0/24"]
-  public_subnets      = ["10.2.40.0/24", "10.2.50.0/24", "10.2.60.0/24"]
-  cidr                = "10.2.0.0/16"
+  private_subnets = ["10.2.10.0/24", "10.2.20.0/24", "10.2.30.0/24"]
+  public_subnets  = ["10.2.40.0/24", "10.2.50.0/24", "10.2.60.0/24"]
+  cidr            = "10.2.0.0/16"
+
+  additional_namespaces = ["develop"]
 
   dns_zone = var.dns_zone
 }
 
 module "mariadb-nonprod" {
   # source = "../module-mariadb"
-  source = "git::ssh://git@github.com/OpenCloudCX/module-mariadb?ref=develop"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-mariadb?ref=demo"
 
   dns_zone  = "nonprod.${var.dns_zone}"
   namespace = "default"
-  stack     = "nonprod"
+  prefix    = "nonprod"
 
   providers = {
     kubernetes = kubernetes.nonprod,
