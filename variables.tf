@@ -6,6 +6,10 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "aws_role_arn" {
+  type = string
+}
+
 variable "access_key" {
   description = "AWS access key"
   type        = string
@@ -21,6 +25,21 @@ variable "dns_zone" {
   default = "opencloudcx.internal"
 }
 
+variable "vpc_id" {
+  type    = string
+  default = ""
+}
+
+variable "private_subnets" {
+  type    = list(string)
+  default = []
+}
+
+variable "public_subnets" {
+  type    = list(string)
+  default = []
+}
+
 variable "azs" {
   description = "A list of availability zones for the vpc"
   type        = list(string)
@@ -30,7 +49,7 @@ variable "azs" {
 variable "cidr" {
   description = "The vpc CIDR (e.g. 10.0.0.0/16)"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = ""
 }
 
 variable "kubernetes_version" {
