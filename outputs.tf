@@ -21,10 +21,10 @@ output "kubernetes_cluster_endpoint" {
 }
 
 output "kubernetes_auth_token" {
-  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_auth_token
+  value = nonsensitive(module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_auth_token)
 }
 
 output "kubernetes_cluster_ca_certificate" {
-  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_ca_certificate
+  value = nonsensitive(module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_ca_certificate)
 }
 
