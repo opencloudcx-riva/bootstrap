@@ -6,9 +6,9 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "aws_role_arn" {
-  type = string
-}
+# variable "aws_role_arn" {
+#   type = string
+# }
 
 variable "access_key" {
   description = "AWS access key"
@@ -55,7 +55,7 @@ variable "cidr" {
 variable "kubernetes_version" {
   description = "The target version of kubernetes"
   type        = string
-  default     = "1.21"
+  default     = "1.22"
 }
 
 variable "kubernetes_node_groups" {
