@@ -15,3 +15,16 @@
 # output "sonarqube_key" {
 #   value = module.opencloudcx-aws-mgmt.sonarqube_key
 # }
+
+output "kubernetes_cluster_endpoint" {
+  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_endpoint
+}
+
+output "kubernetes_auth_token" {
+  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_endpoint
+}
+
+output "kubernetes_cluster_endpoint" {
+  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_endpoint
+}
+
