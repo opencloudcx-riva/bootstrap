@@ -14,8 +14,9 @@ resource "random_string" "scope" {
 }
 
 module "vpc" {
-  source = "../terraform-ocx-bootstrap-module-vpc"
+  # source = "../terraform-ocx-bootstrap-module-vpc"
+  source = "git::ssh://git@github.com/opencloudcx-riva/terraform-aws-ocx-module-bootstrap-vpc?ref=main"
 
-  stack = "specvpctst"
+  stack = "mgmt"
   name  = "opencloudcx-${random_string.scope.result}"
 }
