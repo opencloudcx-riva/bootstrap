@@ -18,8 +18,8 @@ provider "helm" {
 
 module "opencloudcx-aws-eks-mgmt" {
 
-  # source = "../module-eks-aws"
-  source = "git::ssh://git@github.com/opencloudcx-riva/module-eks-aws?ref=ext%2Ffpac-eks"
+  source = "../module-eks-aws"
+  # source = "git::ssh://git@github.com/opencloudcx-riva/module-eks-aws?ref=ext%2Ffpac-eks"
 
   name             = "opencloudcx-${random_string.scope.result}"
   cluster_version  = var.kubernetes_version

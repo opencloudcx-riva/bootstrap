@@ -10,15 +10,15 @@ variable "aws_region" {
 #   type = string
 # }
 
-variable "access_key" {
-  description = "AWS access key"
-  type        = string
-}
+# variable "access_key" {
+#   description = "AWS access key"
+#   type        = string
+# }
 
-variable "secret_key" {
-  description = "AWS secret key"
-  type        = string
-}
+# variable "secret_key" {
+#   description = "AWS secret key"
+#   type        = string
+# }
 
 variable "dns_zone" {
   type    = string
@@ -55,7 +55,7 @@ variable "cidr" {
 variable "kubernetes_version" {
   description = "The target version of kubernetes"
   type        = string
-  default     = "1.22"
+  default     = "1.21"
 }
 
 variable "kubernetes_node_groups" {
