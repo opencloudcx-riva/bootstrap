@@ -16,15 +16,34 @@
 #   value = module.opencloudcx-aws-mgmt.sonarqube_key
 # }
 
-output "kubernetes_cluster_endpoint" {
-  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_endpoint
+# output "kubernetes_cluster_endpoint" {
+#   value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_endpoint
+# }
+
+# output "kubernetes_auth_token" {
+#   value = nonsensitive(module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_auth_token)
+# }
+
+# output "kubernetes_cluster_ca_certificate" {
+#   value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_ca_certificate
+# }
+
+output "jenkins_url" {
+  value = format("https://%s", module.opencloudcx-config.jenkins_url)
 }
 
-output "kubernetes_auth_token" {
-  value = nonsensitive(module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_auth_token)
+output "sonarqube_url" {
+  value = format("https://%s", module.opencloudcx-config.sonarqube_url)
 }
 
-output "kubernetes_cluster_ca_certificate" {
-  value = module.opencloudcx-aws-eks-mgmt.aws_eks_cluster_ca_certificate
+output "dashboard_url" {
+  value = format("https://%s", module.opencloudcx-config.dashboard_url)
 }
 
+output "spinnaker_url" {
+  value = format("https://%s", module.opencloudcx-config.spinnaker_url)
+}
+
+output "spinnaker_gate_url" {
+  value = format("https://%s", module.opencloudcx-config.spinnaker_gate_url)
+}
