@@ -36,3 +36,23 @@ module "opencloudcx-config" {
   prometheus_helm_chart_version    = "15.8.4"
 
 }
+
+output "jenkins_url" {
+  value = format("https://%s", module.opencloudcx-config.jenkins_url)
+}
+
+output "sonarqube_url" {
+  value = format("https://%s", module.opencloudcx-config.sonarqube_url)
+}
+
+output "dashboard_url" {
+  value = format("https://%s", module.opencloudcx-config.dashboard_url)
+}
+
+output "spinnaker_url" {
+  value = format("https://%s", module.opencloudcx-config.spinnaker_url)
+}
+
+output "spinnaker_gate_url" {
+  value = format("https://%s", module.opencloudcx-config.spinnaker_gate_url)
+}
