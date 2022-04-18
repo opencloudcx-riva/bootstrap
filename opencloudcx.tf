@@ -1,16 +1,20 @@
+# Developed by RIVA Solutions Inc 2022.  Authorized Use Only
+
 module "opencloudcx-config" {
 
   depends_on = [
     module.opencloudcx-aws-eks-mgmt
   ]
 
-  source = "../module-new-ocx-aws"
+  # source = "../module-opencloudcx-aws"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-opencloudcx-aws?ref=ext%2Ffpac-eks"
 
   providers = {
     kubernetes = kubernetes.mgmt
     helm       = helm.mgmt
   }
 
+  name        = "opencloudcx-${random_string.scope.result}"
   random_seed = random_string.scope.result
   stack       = module.opencloudcx-aws-eks-mgmt.stack
   dns_zone    = var.dns_zone
