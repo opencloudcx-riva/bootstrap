@@ -73,7 +73,7 @@ module "code-server" {
   # source = "../module-code-server"
   source = "git::ssh://git@github.com/opencloudcx-riva/module-code-server?ref=demo"
 
-  dns_zone  = "dev.${var.dns_zone}"
+  dns_zone  = "mgmt.${var.dns_zone}"
   namespace = "opencloudcx"
 
   providers = {
