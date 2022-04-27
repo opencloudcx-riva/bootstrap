@@ -69,6 +69,23 @@ module "grafana_monitoring" {
   ]
 }
 
+module "code-server" {
+  # source = "../module-code-server"
+  source = "git::ssh://git@github.com/opencloudcx-riva/module-code-server?ref=demo"
+
+  dns_zone  = "dev.${var.dns_zone}"
+  namespace = "develop"
+
+  providers = {
+    kubernetes = kubernetes.mgmt,
+    helm       = helm.mgmt
+  }
+
+  depends_on = [
+    module.opencloudcx-aws-mgmt,
+  ]
+}
+
 output "aws_eks_cluster_endpoint_mgmt" {
   value = module.opencloudcx-aws-mgmt.aws_eks_cluster_endpoint
 }
